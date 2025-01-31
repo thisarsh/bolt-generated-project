@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-color: #1a73e8;
+  --text-color: #333;
+  --background-start: #f0f4f7;
+  --background-end: #cce7ff;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(to bottom, var(--background-start), var(--background-end));
+  color: var(--text-color);
+  overflow-x: hidden;
+  height: 500vh;
+}
+
+.fixed-center {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+}
