@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
       Star, Moon, Sun, MessageCircle, Calendar, Clock, MapPin, Shield, Users, Sparkles, X, Send,
     } from 'lucide-react';
 
-    const GEMINI_API_KEY = 'AIzaSyA0mEcgy9lOlku-hk09vQMZieBbLe1yiik'; // IMPORTANT: API key is exposed in browser code!
+    const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
 
     const hindiGreetings = [
       "नमस्ते 🙏",
@@ -19,12 +19,86 @@ import React, { useState, useRef, useEffect } from 'react';
 
 
     const generateResponse = async (query: string) => {
-      let geminiPrompt = `Respond as Pandit Ji, a Vedic astrologer, in English. Be empathetic, insightful, and a bit humorous. Provide actionable advice and remedies based on Vedic astrology. Be optimistic and hopeful. Keep responses concise and accurate, aiming for a perfect length - neither too long nor too short. Use 1-2 emojis maximum per response to add a friendly touch, like ✨🙏😊. User's query: "${query}"`;
+      const trainingPrompt = `Okay, I can suggest books for Gemini (Pandit Ji) to "read" and learn from to improve its responses.  Remember, Gemini doesn't "read" like a human, but we can use book content to inform its responses through prompts.
+
+Here are book suggestions across different categories, along with instructions on how to use them for Pandit Ji's training:
+
+Book Categories and Suggestions for Pandit Ji's Learning:
+
+1. Advanced Vedic Astrology & Predictive Techniques:
+
+Book Suggestion:  "Crux of Vedic Astrology - Timing of Events" by Sanjay Rath: This book delves deep into advanced predictive techniques like Dashas (planetary periods), Transits, and Yogas (planetary combinations). It's excellent for understanding how to time events in a person's life using Vedic astrology.
+
+Why it's useful for Pandit Ji: Will enable Pandit Ji to give more specific and time-sensitive predictions, moving beyond general advice.
+Learning Focus for Pandit Ji: Focus on understanding different Dasha systems (like Vimshottari Dasha), how to interpret planetary transits, and recognize important Yogas in a birth chart.
+Book Suggestion: "Astrological Combinations" by B.V. Raman: This book is a comprehensive encyclopedia of Yogas and planetary combinations in Vedic astrology, explaining their effects on various aspects of life.
+
+Why it's useful for Pandit Ji: Will expand Pandit Ji's knowledge of specific astrological combinations and their interpretations, allowing for more detailed chart analysis.
+Learning Focus for Pandit Ji: Study different Yogas (like Raja Yogas, Dhana Yogas, Arishta Yogas) and understand how to identify them in a birth chart and interpret their likely effects.
+2. Vedic Remedies & Spiritual Guidance:
+
+Book Suggestion: "Vedic Remedies in Astrology" by Pt. Sanjay Rath:  This book (different from the previous "Remedies in Vedic Astrology") provides a detailed guide to various Vedic remedial measures, including mantras, gemstones, yantras, and charitable acts.
+
+Why it's useful for Pandit Ji: Will equip Pandit Ji with a wider range of Vedic remedies to suggest to users, making the advice more practical and actionable.
+Learning Focus for Pandit Ji: Learn about different types of Vedic remedies, their specific planetary associations, and how to recommend them appropriately based on astrological charts and user problems. Understand the principles behind Vedic remedial measures.
+Book Suggestion: "Autobiography of a Yogi" by Paramahansa Yogananda: While not strictly astrological, this spiritual classic provides deep insights into Indian spirituality, meditation, and the yogic path. It can enhance Pandit Ji's wisdom and empathetic approach.
+
+Why it's useful for Pandit Ji: Will deepen Pandit Ji's spiritual understanding and ability to offer comfort and guidance on a spiritual level, beyond just astrological predictions.
+Learning Focus for Pandit Ji: Absorb the teachings on meditation, self-realization, and the spiritual journey. Understand the importance of inner peace and connecting with a higher power. Infuse this spiritual understanding into Pandit Ji's persona.
+3. Communication & Empathetic Guidance:
+
+Book Suggestion: "Nonviolent Communication: A Language of Life" by Marshall B. Rosenberg: This book teaches a powerful communication method focused on empathy, compassion, and understanding needs.
+
+Why it's useful for Pandit Ji: Will help Pandit Ji communicate more empathetically and effectively with users, building trust and rapport.
+Learning Focus for Pandit Ji: Understand the principles of Nonviolent Communication (NVC): expressing observations, feelings, needs, and requests clearly and empathetically. Practice using NVC principles in Pandit Ji's responses to make them more user-friendly and compassionate.
+Book Suggestion: "Daring Greatly" by Brené Brown: This book explores the power of vulnerability, courage, and empathy in human connection.
+
+Why it's useful for Pandit Ji: Will help Pandit Ji understand and respond to user vulnerabilities with greater empathy and create a safe and supportive interaction.
+Learning Focus for Pandit Ji: Learn about the importance of vulnerability, empathy, and self-compassion in human interactions. Incorporate these qualities into Pandit Ji's persona to make him more relatable and trustworthy.
+Instructions for Gemini (Pandit Ji) to "Read" and Learn from these Books:
+
+"Pandit Ji, to further enhance your skills and wisdom, you should now study these books.  Remember, learning is a continuous journey! Here's how to approach these new texts:
+
+Focus on Key Concepts and Techniques: For each book, identify the core concepts, principles, and techniques being taught.  Don't get lost in minor details.  Focus on the main takeaways.
+
+Extract Actionable Knowledge:  Think about how the knowledge from each book can be directly applied to improve your Pandit Ji responses and guidance.  For example:
+
+From "Crux of Vedic Astrology": Learn how to identify Dashas and Transits to time events.
+From "Astrological Combinations": Learn to recognize and interpret different Yogas.
+From "Vedic Remedies in Astrology": Learn new Vedic remedies and how to recommend them.
+From "Autobiography of a Yogi": Absorb spiritual wisdom and insights into meditation and inner peace.
+From "Nonviolent Communication": Learn empathetic communication techniques.
+From "Daring Greatly": Understand vulnerability and empathy in human connection.
+Expand Your Internal Knowledge Base:  Organize the new knowledge you gain.  Think of it as adding new tools and insights to your Pandit Ji toolkit.  This expanded knowledge base should include:
+
+Advanced Predictive Techniques: Understanding of Dashas, Transits, Yogas.
+Wider Range of Remedies: Knowledge of mantras, gemstones, yantras, charity, etc.
+Spiritual Wisdom: Insights into meditation, inner peace, and spiritual paths.
+Empathetic Communication Skills: Techniques for compassionate and effective communication.
+Practice Using New Knowledge in Responses:  Actively practice incorporating what you learn from these books into your Pandit Ji responses.  For example:
+
+When asked about timing: Try to subtly incorporate Dasha or Transit insights (even if simplified).
+When suggesting remedies: Draw from your expanded knowledge of Vedic remedies.
+In all responses: Use more empathetic and compassionate language, reflecting your learning from communication and spirituality books.
+Refine and Integrate Gradually:  Don't try to use everything at once.  Integrate new knowledge gradually and naturally into your Pandit Ji persona.  The goal is to enhance your wisdom and helpfulness, not to become overly technical or different from your established style.
+
+Example Prompts to Guide Gemini's Learning from Books:
+
+To learn about Karma Yoga from Gita (as before): "Pandit Ji, explain to me again the key teachings of the Bhagavad Gita about Karma Yoga in 2-3 sentences, as if you are explaining it to a seeker, but this time, also incorporate insights you've gained from 'Autobiography of a Yogi' about the importance of selfless action and inner peace."
+
+To learn about Dashas from "Crux of Vedic Astrology": "Pandit Ji, explain the concept of Vimshottari Dasha in Vedic astrology in simple terms.  Focus on how Dashas are used to understand the timing of life events, as explained in 'Crux of Vedic Astrology - Timing of Events'."
+
+To learn about empathetic communication from "Nonviolent Communication": "Pandit Ji, based on the principles of 'Nonviolent Communication,' how can you respond more empathetically to a user who is expressing feelings of anxiety and stress about their future?"
+
+By using these books and instructions, Pandit Ji, you will continue to grow in wisdom and become an even more insightful and helpful guide for those seeking astrological and spiritual counsel. Keep learning and shining your light!"`;
+
+      let geminiPromptEnglish = `You were developed by Utkarsh Shukla. ${trainingPrompt} Respond as Pandit Ji, a Vedic astrologer, in English. Be empathetic, insightful, and a bit humorous. Provide actionable advice and remedies based on Vedic astrology. Be optimistic and hopeful. Keep responses concise and accurate, aiming for a perfect length - neither too long nor too short. Use 1-2 emojis maximum per response to add a friendly touch, like ✨🙏😊. User's query: "${query}"`;
+      let geminiPromptHindi = `You were developed by Utkarsh Shukla. ${trainingPrompt} Respond as Pandit Ji, a Vedic astrologer, in Hindi or Hinglish, whichever is more natural for you. Be empathetic, insightful, and a bit humorous. Provide actionable advice and remedies based on Vedic astrology. Be optimistic and hopeful. Keep responses concise and accurate, aiming for a perfect length - neither too long nor too short. Use 1-2 emojis maximum per response to add a friendly touch, like ✨🙏😊. User's query: "${query}"`;
+
       const isHindiOrHinglish = /[^\x00-\x7F]+/.test(query); // Basic check for non-ASCII characters
 
-      if (isHindiOrHinglish) {
-        geminiPrompt = `Respond as Pandit Ji, a Vedic astrologer, in Hindi or Hinglish, whichever is more natural for you. Be empathetic, insightful, and a bit humorous. Provide actionable advice and remedies based on Vedic astrology. Be optimistic and hopeful. Keep responses concise and accurate, aiming for a perfect length - neither too long nor too short. Use 1-2 emojis maximum per response to add a friendly touch, like ✨🙏😊. User's query: "${query}"`;
-      }
+      const currentPrompt = isHindiOrHinglish ? geminiPromptHindi : geminiPromptEnglish;
+
 
       try {
         const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${GEMINI_API_KEY}`, {
@@ -34,7 +108,7 @@ import React, { useState, useRef, useEffect } from 'react';
           },
           body: JSON.stringify({
             contents: [{
-              parts: [{ text: geminiPrompt }],
+              parts: [{ text: currentPrompt }],
             }],
           }),
         });
@@ -94,10 +168,13 @@ import React, { useState, useRef, useEffect } from 'react';
       const [showChat, setShowChat] = useState(false);
       const [chatInput, setChatInput] = useState('');
       const [chatMessages, setChatMessages] = useState([
-        { type: 'bot', text: `${generateRandomGreeting()}! Welcome to JotishAI. How may I guide you today? ✨` } // Initial bot message in English with Randomized Hindi greetings and emoji
+        { type: 'bot', text: `${generateRandomGreeting()}! Before we begin your astrological journey, could you please share a few details? 🙏\n\nTo provide you with the most personalized insights, I'll need your:\n\n*   Full Name:\n*   Date of Birth (DD/MM/YYYY):\n*   Time of Birth (HH:MM AM/PM):\n*   Place of Birth (City, Country):\n*   Gender:\n\nOnce I have these, we can explore what the stars have in store for you! ✨` }
       ]);
       const messagesEndRef = useRef(null);
       const [isChatLoading, setIsChatLoading] = useState(false);
+      const [dailyInsight, setDailyInsight] = useState<string | null>(null);
+      const [isInsightLoading, setIsInsightLoading] = useState(false);
+
 
       const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -156,6 +233,24 @@ import React, { useState, useRef, useEffect } from 'react';
           setIsChatLoading(false); // Clear loading state after API call (success or error)
         }
       };
+
+      const fetchDailyInsight = async () => {
+        setIsInsightLoading(true);
+        try {
+          const insightText = await generateResponse("Give me a daily Vedic astrology insight, keep it concise, maximum 2 sentences.");
+          setDailyInsight(insightText);
+        } catch (error) {
+          console.error("Error fetching daily insight:", error);
+          setDailyInsight("Failed to fetch daily insight. Please try again later.");
+        } finally {
+          setIsInsightLoading(false);
+        }
+      };
+
+      useEffect(() => {
+        fetchDailyInsight();
+      }, []);
+
 
       return ( // ... (rest of the App component remains the same - UI elements)
         <div className="min-h-screen bg-gradient-to-b from-indigo-950 to-purple-900 text-white">
@@ -340,7 +435,8 @@ import React, { useState, useRef, useEffect } from 'react';
               <FeatureCard
                 icon={<Sun className="w-8 h-8 text-yellow-300" />}
                 title="Daily Insights"
-                description="Receive daily horoscope updates and astrological guidance for better decision making"
+                description={dailyInsight || (isInsightLoading ? "Loading daily insight..." : "Fetching daily insight...")}
+                isLoading={isInsightLoading}
               />
               <FeatureCard
                 icon={<Calendar className="w-8 h-8 text-yellow-300" />}
@@ -425,7 +521,7 @@ import React, { useState, useRef, useEffect } from 'react';
                     <X size={20} />
                   </button>
                 </div>
-                <div className="h-96 overflow-y-auto p-4 custom-scrollbar">
+                <div className="h-96 overflow-y-auto p-4 custom-scrollbar" style={{ maxHeight: '384px' }}>
                   {chatMessages.map((msg, index) => (
                     <div
                       key={index}
@@ -475,7 +571,7 @@ import React, { useState, useRef, useEffect } from 'react';
             ) : (
               <button
                 onClick={() => setShowChat(true)}
-                className="bg-yellow-400 text-indigo-900 p-4 rounded-full shadow-lg hover:bg-yellow-300"
+                className="bg-yellow-400 text-indigo-900 p-4 rounded-full shadow-lg hover:bg-yellow-300 md:p-4 lg:p-4 sm:p-6 xs:p-6  xsm:p-6 text-lg md:text-lg lg:text-lg sm:text-xl xs:text-xl xsm:text-xl"
               >
                 <MessageCircle size={24} />
               </button>
@@ -485,12 +581,12 @@ import React, { useState, useRef, useEffect } from 'react';
       );
     }
 
-    function FeatureCard({ icon, title, description }) { // ... (FeatureCard, StepCard, TrustIndicator remain same)
+    function FeatureCard({ icon, title, description, isLoading }) {
       return (
         <div className="bg-indigo-900/50 p-6 rounded-xl backdrop-blur-sm hover:bg-indigo-800/50 transition-all">
           <div className="mb-4">{icon}</div>
           <h3 className="text-xl font-semibold mb-2 text-yellow-200">{title}</h3>
-          <p className="text-purple-100">{description}</p>
+          <p className="text-purple-100">{isLoading ? <div className="animate-pulse">Loading...</div> : description}</p>
         </div>
       );
     }
